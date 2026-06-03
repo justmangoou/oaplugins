@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-use super::{LikeStatus, RepeatMode, Thumbnail, TrackState};
+use super::{RepeatMode, Thumbnail, TrackState};
 
 /// <https://ytmdesktop.github.io/developer/companion-server/reference/v1/auth-requestcode.html#response>
 #[derive(Deserialize, Debug)]
@@ -14,12 +14,10 @@ pub struct AuthResponse {
 	pub token: String,
 }
 
-/// <https://ytmdesktop.github.io/developer/companion-server/reference/v1/state.html#response>
+/// Minimized of <https://ytmdesktop.github.io/developer/companion-server/reference/v1/state.html#response>
 #[derive(Deserialize, Debug, Clone)]
 pub struct StateResponse {
 	pub player: Player,
-	#[serde(skip_serializing_if = "Option::is_none")]
-	pub video: Option<Video>,
 	#[serde(rename = "playlistId", skip_serializing_if = "Option::is_none")]
 	pub playlist_id: Option<String>,
 }
@@ -61,21 +59,6 @@ pub struct QueueItem {
 	pub video_id: String,
 	#[serde(skip_serializing_if = "Option::is_none")]
 	pub counterparts: Option<Vec<QueueItem>>,
-}
-
-/// <https://ytmdesktop.github.io/developer/companion-server/reference/v1/state.html#video-object>
-#[derive(Deserialize, Debug, Clone)]
-#[serde(rename_all = "camelCase")]
-pub struct Video {
-	pub author: String,
-	pub channel_id: String,
-	pub title: String,
-	pub album: Option<String>,
-	pub album_id: Option<String>,
-	pub like_status: LikeStatus,
-	pub thumbnails: Vec<Thumbnail>,
-	pub duration_seconds: u32,
-	pub id: String,
 }
 
 #[derive(Deserialize, Debug, Clone)]

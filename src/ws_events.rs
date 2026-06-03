@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use ytmd_companion_rs::models::response::{StateResponse, WebsocketEvent};
+use oaytmd_companion::models::response::{StateResponse, WebsocketEvent};
 
 use crate::client::{PlayerWrapper, ytmd_player};
 

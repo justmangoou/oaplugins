@@ -2,7 +2,7 @@ use std::sync::{Arc, OnceLock};
 
 use arc_swap::{ArcSwap, ArcSwapOption};
 use openaction::set_global_settings;
-use ytmd_companion_rs::{
+use oaytmd_companion::{
 	Client, ClientSettings,
 	models::{RepeatMode, request::CommandRequest},
 };

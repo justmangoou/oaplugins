@@ -17,14 +17,14 @@ use actions::*;
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct GlobalSettings {
-	pub client_settings: ytmd_companion_rs::ClientSettings,
+	pub client_settings: oaytmd_companion::ClientSettings,
 	pub error: Option<String>,
 }
 
 impl Default for GlobalSettings {
 	fn default() -> Self {
 		Self {
-			client_settings: ytmd_companion_rs::ClientSettings {
+			client_settings: oaytmd_companion::ClientSettings {
 				app_id: env!("CARGO_PKG_NAME").to_owned(),
 				app_name: "YTMD Controller".to_owned(),
 				app_version: env!("CARGO_PKG_VERSION").to_owned(),
@@ -38,7 +38,7 @@ impl Default for GlobalSettings {
 }
 
 impl Deref for GlobalSettings {
-	type Target = ytmd_companion_rs::ClientSettings;
+	type Target = oaytmd_companion::ClientSettings;
 
 	fn deref(&self) -> &Self::Target {
 		&self.client_settings

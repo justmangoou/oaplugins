@@ -19,25 +19,25 @@ pub struct AuthRequest {
 	pub code: String,
 }
 
-/// <https://ytmdesktop.github.io/developer/companion-server/reference/v1/command.html#commands>
+/// Minimized of <https://ytmdesktop.github.io/developer/companion-server/reference/v1/command.html#commands>
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
 #[serde(tag = "command", content = "data")]
 pub enum CommandRequest {
 	PlayPause,
-	Play,
-	Pause,
-	VolumeUp,
-	VolumeDown,
+	// Play,
+	// Pause,
+	// VolumeUp,
+	// VolumeDown,
 	SetVolume(u8),
 	Mute,
 	Unmute,
-	SeekTo(u64),
+	// SeekTo(u64),
 	Next,
 	Previous,
 	RepeatMode(RepeatMode),
 	Shuffle(bool),
-	PlayQueueIndex(u32),
+	// PlayQueueIndex(u32),
 	// ToggleLike,
 	// ToggleDislike,
 }

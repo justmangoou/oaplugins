@@ -1,5 +1,5 @@
 use openaction::{Instance, OpenActionResult};
-use ytmd_companion_rs::models::request::CommandRequest;
+use oaytmd_companion::models::request::CommandRequest;
 
 use crate::client::ytmd_client;
 

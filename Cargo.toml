@@ -1,13 +1,15 @@
 [workspace]
 resolve = "3"
 members = [
-    "companion"
+    "ytmd-companion"
 ]
 
 [workspace.dependencies]
 arc-swap = "1.9"
 tokio = { version = "1.48", features = ["rt-multi-thread", "macros"] }
 futures-util = "0.3"
+
+openaction = "2.3"
 
 serde = { version = "1.0", features = ["derive"] }
 serde_repr = "0.1"
@@ -17,6 +19,7 @@ reqwest = { version = "0.13", default-features = false, features = ["json"] }
 rust_socketio = { version = "*", features = ["async"] }
 
 log = "0.4"
+simplelog = "0.12"
 thiserror = "1.0"
 
 [package]
@@ -25,9 +28,9 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-ytmd-companion-rs = { path = "companion" }
+oaytmd-companion = { path = "ytmd-companion" }
 
-openaction = "2.3"
+openaction.workspace = true
 
 arc-swap.workspace = true
 tokio.workspace = true
@@ -36,7 +39,7 @@ serde.workspace = true
 serde_json.workspace = true
 
 log.workspace = true
-simplelog = "0.12"
+simplelog.workspace = true
 
 [profile.release]
 opt-level = 3

@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use openaction::{Action, Instance, OpenActionResult, async_trait};
-use ytmd_companion_rs::models::{RepeatMode, request::CommandRequest};
+use oaytmd_companion::models::{RepeatMode, request::CommandRequest};
 
 use crate::{actions::send_command, client::ytmd_player};
 

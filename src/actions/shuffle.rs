@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use openaction::{Action, Instance, OpenActionResult, async_trait};
-use ytmd_companion_rs::models::request::CommandRequest;
+use oaytmd_companion::models::request::CommandRequest;
 
 use crate::actions::send_command;
 

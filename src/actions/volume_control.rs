@@ -1,6 +1,6 @@
 use openaction::{Action, Instance, OpenActionResult, async_trait};
 use serde::{Deserialize, Serialize};
-use ytmd_companion_rs::models::request::CommandRequest;
+use oaytmd_companion::models::request::CommandRequest;
 
 use crate::{actions::send_command, client::ytmd_player};
 
