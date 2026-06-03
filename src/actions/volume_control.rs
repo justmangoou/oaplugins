@@ -41,14 +41,20 @@ impl Action for VolumeControlAction {
 
 	async fn dial_rotate(
 		&self,
-		_instance: &Instance,
+		instance: &Instance,
 		settings: &Self::Settings,
 		ticks: i16,
 		_pressed: bool,
 	) -> OpenActionResult<()> {
+	    let current_volume = ytmd_player().load().volume as i16;
 	    let delta = ticks * settings.step_size as i16;
-		let mut accumulated = VOLUME_CHANGE_ACCUMULATOR.lock().await;
 
+		if (current_volume == 0 && delta < 0) || (current_volume == 100 && delta > 0) {
+		    instance.show_alert().await?;
+            return Ok(());
+        }
+
+		let mut accumulated = VOLUME_CHANGE_ACCUMULATOR.lock().await;
 		*accumulated += delta;
 
 		Ok(())
