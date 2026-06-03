@@ -22,17 +22,6 @@ pub enum TrackState {
 	Buffering = 2,
 }
 
-/// <https://ytmdesktop.github.io/developer/companion-server/reference/v1/state.html#like-status-enum>
-#[derive(Serialize_repr, Deserialize_repr, Default, Debug, Clone)]
-#[repr(i8)]
-pub enum LikeStatus {
-	Unknown = -1,
-	Displike = 0,
-	#[default]
-	Indifferent = 1,
-	Like = 2,
-}
-
 /// <https://ytmdesktop.github.io/developer/companion-server/reference/v1/state.html#video-type-enum>
 #[derive(Serialize_repr, Deserialize_repr, Debug, Clone)]
 #[repr(i8)]
