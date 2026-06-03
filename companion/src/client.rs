@@ -51,13 +51,13 @@ impl Client {
 	}
 
 	pub async fn connect(&self, force_reauth: bool) -> Result<()> {
-		let settings = if force_reauth {
-			let current = self.settings.load();
+	    let current_settings = self.settings.load();
 
+		let settings = if force_reauth || current_settings.token.is_none() {
 			let code_resp = self.auth_request_code().await?;
 			let auth_resp = self.auth_request(code_resp.code).await?;
 
-			let mut new_settings = (**current).clone();
+			let mut new_settings = (**current_settings).clone();
 			new_settings.token = Some(auth_resp.token.clone());
 
 			let new_rest = rest::RestClient::new(new_settings.api_url());
@@ -68,7 +68,7 @@ impl Client {
 
 			arc_settings
 		} else {
-			arc_swap::Guard::into_inner(self.settings.load())
+			arc_swap::Guard::into_inner(current_settings)
 		};
 
 		// Reads fresh host, port, and token cleanly from unified Arc context

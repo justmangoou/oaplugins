@@ -8,6 +8,20 @@ button {
   @apply px-3 py-2;
   @apply text-sm text-neutral-300;
   @apply bg-neutral-700;
+  @apply rounded-lg;
+  @apply transition-colors duration-200;
+}
+
+button:hover:not(:disabled) {
+  @apply bg-neutral-600;
+}
+
+button:active:not(:disabled) {
+  @apply bg-neutral-500;
+}
+
+button:disabled {
+  @apply bg-neutral-800 text-neutral-500 cursor-not-allowed;
 }
 
 input {

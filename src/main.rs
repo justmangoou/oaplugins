@@ -15,7 +15,7 @@ mod ws_events;
 
 use actions::*;
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct GlobalSettings {
 	pub client_settings: ytmd_companion_rs::ClientSettings,
 	pub error: Option<String>,

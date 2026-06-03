@@ -17,8 +17,11 @@
     const handleSave = async (e: Event) => {
         $globalSettings = {
             ...$globalSettings,
-            host,
-            port,
+            client_settings: {
+              host,
+              port,
+              token: null,
+            }
         };
     };
 
@@ -77,13 +80,13 @@
         </div>
     </div>
 
-    <div class="flex gap-2 pt-2 font-medium">
+    <div class="gap-2 pt-2 font-medium">
         <button
             onclick={handleSave}
             disabled={loading}
-            class="disabled:bg-gray-800 rounded transition"
+            class="w-full rounded transition disabled:bg-gray-800"
         >
-            {loading ? "Saving..." : "Save Settings"}
+            {loading ? "Authenticating..." : "Authenticate"}
         </button>
     </div>
 </div>
