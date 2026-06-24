@@ -1,0 +1,34 @@
+{
+  "Name": "Macro",
+  "Author": "justmangoou",
+  "Version": "0.1.0",
+  "Category": "Macro",
+  "Icon": "icon",
+  "OS": [
+    { "Platform": "windows" },
+    { "Platform": "mac" },
+    { "Platform": "linux" }
+  ],
+  "CodePaths": {
+    "x86_64-pc-windows-msvc": "oamacro-x86_64-pc-windows-msvc.exe",
+    "x86_64-apple-darwin": "oamacro-x86_64-apple-darwin",
+    "aarch64-apple-darwin": "oamacro-aarch64-apple-darwin",
+    "x86_64-unknown-linux-gnu": "oamacro-x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu": "oamacro-aarch64-unknown-linux-gnu"
+  },
+  "CodePathWin": "oamacro-x86_64-pc-windows-msvc.exe",
+  "CodePathMac": "oamacro-x86_64-apple-darwin",
+  "CodePathLin": "oamacro-x86_64-unknown-linux-gnu",
+  "Actions": [
+    {
+      "UUID": "com.github.justmangoou.oamacro.mouse",
+      "Name": "Mouse",
+      "Icon": "icon",
+      "Tooltip": "Auto click",
+      "Controllers": ["Keypad"],
+      "PropertyInspectorPath": "pi/mouse.html",
+      "DisableAutomaticStates": true,
+      "States": [{ "Image": "icon" }]
+    }
+  ]
+}

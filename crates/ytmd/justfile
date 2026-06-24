@@ -1,0 +1,15 @@
+set shell := ["bash", "-euo", "pipefail", "-c"]
+
+plugin-id := "com.github.justmangoou.oaytmd"
+binary := "oaytmd"
+
+build plugin_root target:
+    cd pi && deno task build
+
+    rm -rf {{plugin_root}}/{{plugin-id}}.sdPlugin
+    cp -r assets {{plugin_root}}/{{plugin-id}}.sdPlugin
+
+    cargo build --release --target {{target}} -p {{binary}}
+
+    cp ../../target/{{target}}/release/{{binary}} \
+       {{plugin_root}}/{{plugin-id}}.sdPlugin/{{binary}}-{{target}}
