@@ -6,9 +6,12 @@ plugin-root := "~/.config/opendeck/plugins"
 
 default: build-all
 
+check:
+    deno task --recursive check
+
+build-all: check
+    just build macro
+    just build ytmd
+
 build crate:
     just --justfile crates/{{crate}}/justfile build {{plugin-root}} {{os}}
-
-build-all:
-    just build autoclicker
-    just build ytmd

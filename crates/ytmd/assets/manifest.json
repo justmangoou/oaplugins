@@ -69,7 +69,11 @@
       "Controllers": ["Keypad"],
       "PropertyInspectorPath": "pi/simple.html",
       "DisableAutomaticStates": true,
-      "States": [{ "Image": "actions/repeat_0" }, { "Image": "actions/repeat_1" }, { "Image": "actions/repeat_2" }]
+      "States": [
+        { "Image": "actions/repeat_0" },
+        { "Image": "actions/repeat_1" },
+        { "Image": "actions/repeat_2" }
+      ]
     },
     {
       "UUID": "justmangoou.oaytmd.volumecontrol",

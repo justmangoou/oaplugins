@@ -1,16 +1,29 @@
-<svg width="144" height="144" viewBox="0 0 144 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="144" height="144" viewBox="0 0 144 144" fill="none"
+  xmlns="http://www.w3.org/2000/svg">
   <g clip-path="url(#clip0)">
-    <rect width="144" height="144" fill="#FF0000"/>
-    <circle cx="20" cy="130" r="52.3" fill="#CC0000"/>
-    <circle cx="20" cy="130" r="47.7" fill="#FF0000"/>
-    <polygon points="1.8,156.1 46.1,128.9 1.8,103.9" fill="#CC0000"/>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M144 0H76C47.8 0 25 22.8 25 51V144H144V0Z" fill="black" fill-opacity="0.10"/>
-    <line x1="36" y1="56" x2="50" y2="56" stroke="white" stroke-width="6" stroke-linecap="round"/>
-    <line x1="36" y1="88" x2="50" y2="88" stroke="white" stroke-width="6" stroke-linecap="round"/>
-    <path d="M 50,88 C 76,88 76,56 102,56" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
-    <path d="M 50,56 C 76,56 76,88 102,88" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
-    <polyline points="93,47 102,56 93,65" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <polyline points="93,79 102,88 93,97" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect width="144" height="144" fill="#FF0000" />
+    <circle cx="20" cy="130" r="52.3" fill="#CC0000" />
+    <circle cx="20" cy="130" r="47.7" fill="#FF0000" />
+    <polygon points="1.8,156.1 46.1,128.9 1.8,103.9" fill="#CC0000" />
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M144 0H76C47.8 0 25 22.8 25 51V144H144V0Z" fill="black"
+      fill-opacity="0.10" />
+    <line x1="36" y1="56" x2="50" y2="56" stroke="white" stroke-width="6"
+      stroke-linecap="round" />
+    <line x1="36" y1="88" x2="50" y2="88" stroke="white" stroke-width="6"
+      stroke-linecap="round" />
+    <path d="M 50,88 C 76,88 76,56 102,56" stroke="white" stroke-width="6"
+      stroke-linecap="round" fill="none" />
+    <path d="M 50,56 C 76,56 76,88 102,88" stroke="white" stroke-width="6"
+      stroke-linecap="round" fill="none" />
+    <polyline points="93,47 102,56 93,65" stroke="white" stroke-width="6"
+      stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <polyline points="93,79 102,88 93,97" stroke="white" stroke-width="6"
+      stroke-linecap="round" stroke-linejoin="round" fill="none" />
   </g>
-  <defs><clipPath id="clip0"><rect width="144" height="144" fill="white"/></clipPath></defs>
+  <defs>
+    <clipPath id="clip0">
+      <rect width="144" height="144" fill="white" />
+    </clipPath>
+  </defs>
 </svg>
