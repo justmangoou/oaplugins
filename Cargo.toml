@@ -12,7 +12,7 @@ license = "MIT"
 [workspace.dependencies]
 ytmd-companion = { path = "crates/ytmd-companion" }
 
-openaction = "2.6"
+openaction = { git = "https://github.com/OpenActionAPI/rust.git", commit = "25ef14d" }
 
 tokio = { version = "1.52", features = ["rt-multi-thread", "macros"] }
 futures-util = "0.3"

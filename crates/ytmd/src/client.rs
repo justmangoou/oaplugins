@@ -7,17 +7,21 @@ use openaction::{Action, Instance, OpenActionResult, set_global_settings, visibl
 use tokio::sync::{Mutex, RwLock};
 use ytmd_companion::{
 	Client, ClientSettings,
-	models::{RepeatMode, TrackState, request::CommandRequest, response::WebsocketEvent},
+	models::{
+		TrackState,
+		request::CommandRequest,
+		response::{Video, WebsocketEvent},
+	},
 };
 
-use crate::GLOBAL_SETTINGS;
+use crate::{GLOBAL_SETTINGS, actions};
 
 #[derive(Default, Clone)]
 pub struct PlayerWrapper {
 	pub track_state: TrackState,
 	pub muted: bool,
 	pub volume: u32,
-	pub repeat_mode: RepeatMode,
+	pub video: Option<Video>,
 }
 
 pub static YTMD_CLIENT: LazyLock<Mutex<Option<Client>>> = LazyLock::new(|| Mutex::new(None));
@@ -117,38 +121,24 @@ async fn setup_client(client_settings: ClientSettings) -> Result<Client, String>
 		.map_err(|e| format!("Failed to set up event handler for YTMD client: {}", e))?;
 
 	volume_change_watcher();
+	track_info_watcher();
 
 	Ok(client)
 }
 
 async fn handle_ws_event(item: WebsocketEvent) {
-	async fn call_did_receive_settings(action_uuid: &'static str) {
-		for instance in visible_instances(action_uuid).await {
-			if let Err(e) = instance.get_settings().await {
-				log::error!(
-					"Failed to call did_receive_settings for action {}: {}",
-					action_uuid,
-					e
-				);
-			}
-		}
-	}
-
 	match item {
 		WebsocketEvent::StateUpdate(state) => {
 			*YTMD_PLAYER.write().await = PlayerWrapper {
 				track_state: state.player.track_state,
 				muted: state.player.muted,
 				volume: state.player.volume,
-				repeat_mode: state
-					.player
-					.queue
-					.map(|q| q.repeat_mode)
-					.unwrap_or_default(),
+				video: state.video,
 			};
 
-			call_did_receive_settings(crate::actions::PlayPauseAction::UUID).await;
-			call_did_receive_settings(crate::actions::RepeatAction::UUID).await;
+			for instance in visible_instances(crate::actions::PlayblackVolumeAction::UUID).await {
+				actions::playback_volume::update_feedback(&instance).await;
+			}
 		}
 		WebsocketEvent::Error(error) => {
 			log::error!("Received error event: {}", error);
@@ -162,7 +152,7 @@ fn volume_change_watcher() {
 	}
 
 	tokio::spawn(async {
-		let mut interval = tokio::time::interval(std::time::Duration::from_millis(500));
+		let mut interval = tokio::time::interval(std::time::Duration::from_millis(250));
 
 		loop {
 			interval.tick().await;
@@ -190,6 +180,57 @@ fn volume_change_watcher() {
 				.await
 			{
 				log::error!("Failed to send volume change command: {}", e);
+			}
+		}
+	});
+}
+
+fn track_info_watcher() {
+	tokio::spawn(async {
+		let mut interval = tokio::time::interval(std::time::Duration::from_millis(250));
+		let max_display_len = 16;
+
+		loop {
+			interval.tick().await;
+
+			let player = YTMD_PLAYER.read().await;
+
+			let Ok(now) = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH) else {
+				continue;
+			};
+
+			let step_idx = (now.as_millis() / 250) as usize;
+
+			for instance in visible_instances(crate::actions::PlayblackVolumeAction::UUID).await {
+				let full_title = match &player.video {
+					Some(video) => format!("{} - {}", video.author, video.title),
+					None => "No Track".to_string(),
+				};
+
+				let chars: Vec<char> = full_title.chars().collect();
+
+				let display_title = if chars.len() > max_display_len {
+					let mut padded = chars.clone();
+					padded.extend(vec![' ', ' ', ' ', ' ']);
+
+					let total_len = padded.len();
+					let start_idx = step_idx % total_len;
+
+					let mut marquee = String::new();
+					for i in 0..max_display_len {
+						marquee.push(padded[(start_idx + i) % total_len]);
+					}
+					marquee
+				} else {
+					full_title
+				};
+
+				instance
+					.set_feedback(&serde_json::json!({
+						"title": display_title,
+					}))
+					.await
+					.ok();
 			}
 		}
 	});

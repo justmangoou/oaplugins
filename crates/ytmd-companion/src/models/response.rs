@@ -20,6 +20,7 @@ pub struct StateResponse {
 	pub player: Player,
 	#[serde(rename = "playlistId", skip_serializing_if = "Option::is_none")]
 	pub playlist_id: Option<String>,
+	pub video: Option<Video>,
 }
 
 /// <https://ytmdesktop.github.io/developer/companion-server/reference/v1/state.html#player-object>
@@ -59,6 +60,14 @@ pub struct QueueItem {
 	pub video_id: String,
 	#[serde(skip_serializing_if = "Option::is_none")]
 	pub counterparts: Option<Vec<QueueItem>>,
+}
+
+/// Minimized of <https://ytmdesktop.github.io/developer/companion-server/reference/v1/state.html#video-object>
+#[derive(Deserialize, Debug, Clone)]
+#[serde(rename_all = "camelCase")]
+pub struct Video {
+	pub author: String,
+	pub title: String,
 }
 
 #[derive(Deserialize, Debug, Clone)]

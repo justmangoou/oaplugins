@@ -1,7 +1,7 @@
 {
   "Name": "YTMD Controller",
   "Author": "justmangoou",
-  "Version": "0.1.0",
+  "Version": "0.2.0",
   "Category": "YTMD Controller",
   "Icon": "icon",
   "OS": [
@@ -21,16 +21,6 @@
   "CodePathLin": "oaytmd-x86_64-unknown-linux-gnu",
   "GlobalSettingsInPropertyInspectorPath": "settings",
   "Actions": [
-    {
-      "UUID": "justmangoou.oaytmd.playpause",
-      "Name": "Play/Pause",
-      "Icon": "actions/play",
-      "Tooltip": "Toggle play/pause",
-      "Controllers": ["Keypad"],
-      "PropertyInspectorPath": "pi/simple.html",
-      "DisableAutomaticStates": true,
-      "States": [{ "Image": "actions/play" }, { "Image": "actions/pause" }]
-    },
     {
       "UUID": "justmangoou.oaytmd.next",
       "Name": "Next Track",
@@ -52,36 +42,15 @@
       "States": [{ "Image": "actions/previous" }]
     },
     {
-      "UUID": "justmangoou.oaytmd.shuffle",
-      "Name": "Shuffle",
-      "Icon": "actions/shuffle",
-      "Tooltip": "Toggle shuffle",
-      "Controllers": ["Keypad"],
-      "PropertyInspectorPath": "pi/simple.html",
-      "DisableAutomaticStates": true,
-      "States": [{ "Image": "actions/shuffle" }]
-    },
-    {
-      "UUID": "justmangoou.oaytmd.repeat",
-      "Name": "Repeat",
-      "Icon": "actions/repeat_0",
-      "Tooltip": "Toggle repeat",
-      "Controllers": ["Keypad"],
-      "PropertyInspectorPath": "pi/simple.html",
-      "DisableAutomaticStates": true,
-      "States": [
-        { "Image": "actions/repeat_0" },
-        { "Image": "actions/repeat_1" },
-        { "Image": "actions/repeat_2" }
-      ]
-    },
-    {
-      "UUID": "justmangoou.oaytmd.volumecontrol",
-      "Name": "Volume Control",
+      "UUID": "justmangoou.oaytmd.playblackvolume",
+      "Name": "Track Playback & Volume",
       "Icon": "actions/volume",
-      "Tooltip": "Control volume",
+      "Tooltip": "Control playback and volume with a single encoder",
       "Controllers": ["Encoder"],
-      "PropertyInspectorPath": "pi/volumecontrol.html",
+      "Encoder": {
+        "layout": "$B1"
+      },
+      "PropertyInspectorPath": "pi/playblackvolume.html",
       "DisableAutomaticStates": true,
       "States": [{ "Image": "actions/volume" }]
     }

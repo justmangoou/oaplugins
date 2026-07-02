@@ -95,12 +95,9 @@ async fn main() -> OpenActionResult<()> {
 	}
 
 	global_events::set_global_event_handler(&GlobalEventHandler);
-	register_action(PlayPauseAction).await;
 	register_action(NextAction).await;
 	register_action(PreviousAction).await;
-	register_action(RepeatAction).await;
-	register_action(ShuffleAction).await;
-	register_action(VolumeControlAction).await;
+	register_action(PlayblackVolumeAction).await;
 
 	openaction::run(std::env::args().collect()).await
 }

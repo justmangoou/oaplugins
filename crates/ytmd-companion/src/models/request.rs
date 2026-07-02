@@ -1,7 +1,5 @@
 use serde::{Deserialize, Serialize};
 
-use super::RepeatMode;
-
 /// <https://ytmdesktop.github.io/developer/companion-server/reference/v1/auth-requestcode.html#request>
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
@@ -35,7 +33,7 @@ pub enum CommandRequest {
 	// SeekTo(u64),
 	Next,
 	Previous,
-	RepeatMode(RepeatMode),
+	// RepeatMode(RepeatMode),
 	Shuffle(bool),
 	// PlayQueueIndex(u32),
 	// ToggleLike,

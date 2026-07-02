@@ -19,11 +19,8 @@ not implement OpenActionAPI will not be accepted.**
 
 ### Actions
 
-- Play / Pause
 - Next / Previous Track
-- Volume Control (Encoder)
-- Shuffle
-- Repeat
+- Playback & Volume Control (Encoder)
 
 ### Credits
 
